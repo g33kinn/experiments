@@ -1,6 +1,6 @@
 const cardWrapper = document.querySelector('.card-wrapper'),
     choosePanel = document.querySelector('.choose-panel');
-const stepCapacity = 30;
+const stepCapacity = 20;
 let step = -1;
 let result = [0, 0, 0, 0];
 let stage = 0;
@@ -177,7 +177,7 @@ document.querySelector('button.next').addEventListener('click', async (e) => {
     });
     await sleep(2000);
 
-    if (step < steps.length / 4) {
+    if (step < 4) {
         chooseItems = [];
         choosePanel.innerHTML = '';
         setChoosePanel();
@@ -195,6 +195,9 @@ document.querySelector('button.next').addEventListener('click', async (e) => {
     } else {
         if (stage < 3) {
             console.log(result);
+            for(let i = 0; i < 4; i++){
+                steps.shift();
+            }
             stage++;
             step = -1;
             cardWrapper.innerHTML = `<div class = "description" style="font-size: 2em">Этап завершен!</div>`;
